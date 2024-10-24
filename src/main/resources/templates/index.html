@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h3 {
+            border-bottom: 2px solid #007bff;
+            padding: 10px 0;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        form {
+            margin-top: 20px;
+        }
+        form table {
+            width: 100%;
+            border: none;
+        }
+        form td {
+            padding: 10px;
+            border: none;
+        }
+        form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        form input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        form button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Topsite Bookstore</h1>
+
+        <h3>Add New Book</h3>
+        <form action="#" th:action="@{/index}" th:object="${book}" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" th:field="*{title}" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="author">Author:</label>
+                        <input type="text" id="author" th:field="*{author}" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="publicationYear">Publication Year:</label>
+                        <input type="number" id="publicationYear" th:field="*{publicationYear}" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="isbn">ISBN:</label>
+                        <input type="text" id="isbn" th:field="*{isbn}" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="price">Price:</label>
+                        <input type="number" id="price" th:field="*{price}" step="0.01" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit">Add Book</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        
+
+        <h3>List of Books</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Publication Year</th>
+                    <th>ISBN</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.title}"></td>
+                    <td th:text="${book.author}"></td>
+                    <td th:text="${book.publicationYear}"></td>
+                    <td th:text="${book.isbn}"></td>
+                    <td th:text="${book.price}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        
+    </div>
+</body>
+</html>
